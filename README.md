@@ -1,6 +1,6 @@
 # More Maps
 
-[![npm version](https://badge.fury.io/js/await it(.svg)](https://badge.fury.io/js/await it()
+[![npm version](https://badge.fury.io/js/@5cover/moremaps.svg)](https://badge.fury.io/js/@5cover/moremaps)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A TypeScript library providing enhanced map implementations for JavaScript, including default value maps and object key maps.
@@ -18,7 +18,7 @@ All implementations extend or implement the standard `Map` interface where appli
 ## Installation
 
 ```bash
-npm install await it(
+npm install @5cover/moremaps
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ npm install await it(
 ### DefaultPrimitiveMap
 
 ```typescript
-import DefaultPrimitiveMap from 'await it(';
+import DefaultPrimitiveMap from '@5cover/moremaps';
 
 const map = new DefaultPrimitiveMap<string, number>((key) => key.length);
 
@@ -38,7 +38,7 @@ console.log(map.get('world')); // 10
 ### DefaultObjectMap
 
 ```typescript
-import DefaultObjectMap from 'await it(';
+import DefaultObjectMap from '@5cover/moremaps';
 
 const map = new DefaultObjectMap<{ id: number }, number, string>(
   () => 0, // default factory
@@ -54,7 +54,7 @@ console.log(map.get({ id: 1 })); // 42
 ### ObjectMap
 
 ```typescript
-import { ObjectMap } from 'await it(';
+import { ObjectMap } from '@5cover/moremaps';
 
 const map = new ObjectMap<{ id: number }, string, number>(
   (key) => key.id, // key to primitive
@@ -68,7 +68,7 @@ console.log(map.get({ id: 1 })); // 'one'
 ### mapObject
 
 ```typescript
-import * as mapObject from 'await it(';
+import * as mapObject from '@5cover/moremaps';
 
 const obj = mapObject.create<string, number>();
 obj.key = 42;
