@@ -1,0 +1,32 @@
+{
+  "name": "@5cover/moremaps",
+  "version": "1.0.0",
+  "description": "More maps... literally",
+  "license": "MIT",
+  "author": "5cover",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "tsx --test",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint",
+    "prepare": "eslint && tsx --test && tsc -p tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.3.2",
+    "@types/node": "^24.5.1",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0"
+  }
+}

@@ -1,0 +1,16 @@
+// tsconfig.build.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "allowJs": false,
+    "noEmit": false,
+    "declaration": true,
+    "removeComments": false,
+  },
+  "exclude": [
+    "tests/",
+    "dist/"
+  ]
+}
