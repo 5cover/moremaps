@@ -18,6 +18,6 @@ export default [
                 projectService: true,
                 tsconfigRootDir: import.meta.dirname,
             },
-        }
+        },
     },
 ];

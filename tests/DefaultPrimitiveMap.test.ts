@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import DefaultPrimitiveMap from '../src/DefaultPrimitiveMap.js';
+import { DefaultPrimitiveMap } from '../src/DefaultPrimitiveMap.js';
 
 await describe(DefaultPrimitiveMap.name, async () => {
     await it('returns default for missing key and caches it', () => {

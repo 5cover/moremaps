@@ -1,10 +1,8 @@
-import DefaultMap from './DefaultMap.js';
-import DefaultPrimitiveMap from './DefaultPrimitiveMap.js';
+import { DefaultMap } from './DefaultMap.js';
+import { DefaultPrimitiveMap } from './DefaultPrimitiveMap.js';
 import { PrimitiveType } from './types.js';
 
-export default class DefaultObjectMap<TKey, TValue, TPrimKey extends PrimitiveType>
-    implements DefaultMap<TKey, TValue>
-{
+export class DefaultObjectMap<TKey, TValue, TPrimKey extends PrimitiveType> implements DefaultMap<TKey, TValue> {
     readonly #ktop;
     readonly #ptok;
     readonly #map;
@@ -30,7 +28,9 @@ export default class DefaultObjectMap<TKey, TValue, TPrimKey extends PrimitiveTy
         return this.#map.delete(this.#ktop(key));
     }
     forEach(callbackfn: (value: TValue, key: TKey, map: Map<TKey, TValue>) => void, thisArg?: unknown): void {
-        this.#map.forEach((v, k) => { callbackfn.call(thisArg === undefined ? this : thisArg, v, this.#ptok(k), this) });
+        this.#map.forEach((v, k) => {
+            callbackfn.call(thisArg === undefined ? this : thisArg, v, this.#ptok(k), this);
+        });
     }
     get(key: TKey): TValue {
         return this.#map.get(this.#ktop(key));

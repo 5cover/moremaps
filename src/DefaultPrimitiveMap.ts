@@ -1,7 +1,7 @@
-import DefaultMap from './DefaultMap.js';
+import { DefaultMap } from './DefaultMap.js';
 import { PrimitiveType } from './types.js';
 
-export default class DefaultPrimitiveMap<TKey extends PrimitiveType, TValue>
+export class DefaultPrimitiveMap<TKey extends PrimitiveType, TValue>
     extends Map<TKey, TValue>
     implements DefaultMap<TKey, TValue>
 {
