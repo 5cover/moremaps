@@ -6,7 +6,7 @@ export class DefaultPrimitiveMap<TKey extends PrimitiveType, TValue>
     implements DefaultMap<TKey, TValue>
 {
     readonly #defaultFactory;
-    constructor(defaultFactory: (key: TKey) => TValue) {
+    constructor(defaultFactory: (key: TKey, map: DefaultPrimitiveMap<TKey, TValue>) => TValue) {
         super();
 
         this.#defaultFactory = defaultFactory;
@@ -19,7 +19,7 @@ export class DefaultPrimitiveMap<TKey extends PrimitiveType, TValue>
         if (value !== undefined) {
             return value;
         }
-        const def = this.#defaultFactory(key);
+        const def = this.#defaultFactory(key, this);
         this.set(key, def);
         return def;
     }
