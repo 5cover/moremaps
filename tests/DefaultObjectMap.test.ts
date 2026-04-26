@@ -3,7 +3,7 @@ import { describe, it } from 'node:test'
 import { DefaultObjectMap } from '../src/DefaultObjectMap.js'
 
 await describe(DefaultObjectMap.name, async () => {
-    interface Key {
+    type Key = {
         id: number
     }
     const createMap = () =>

@@ -1,3 +1,3 @@
-export interface DefaultMap<TKey, TValue> extends Map<TKey, TValue> {
+export type DefaultMap<TKey, TValue> = Map<TKey, TValue> & {
     get(key: TKey): TValue
 }

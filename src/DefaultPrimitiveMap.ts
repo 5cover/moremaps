@@ -16,7 +16,7 @@ export type Options = {
      * set: on key missing, add the default value from the default factory as an entry and return it. This avoids calling the factory again but changes the map which not be what you want.
      * @default 'set'
      */
-    mode?: 'get' | 'set'
+    default?: 'get' | 'set'
 }
 
 /**
@@ -38,7 +38,7 @@ export class DefaultPrimitiveMap<TKey extends PrimitiveType, TValue>
     constructor(defaultFactory: Callback<TKey, TValue>, options?: Options) {
         super()
         this.#defaultFactory = defaultFactory
-        this.#setDefault = (options?.mode ?? 'set') === 'set'
+        this.#setDefault = (options?.default ?? 'set') === 'set'
     }
     map(key: TKey, transform: (value: TValue) => TValue) {
         this.set(key, transform(this.get(key)))

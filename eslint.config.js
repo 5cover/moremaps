@@ -1,8 +1,8 @@
-import { includeIgnoreFile } from '@eslint/compat';
-import eslintjs from '@eslint/js';
-import prettier from 'eslint-config-prettier';
-import * as path from 'path';
-import typescriptEslint from 'typescript-eslint';
+import { includeIgnoreFile } from '@eslint/compat'
+import eslintjs from '@eslint/js'
+import prettier from 'eslint-config-prettier'
+import * as path from 'path'
+import typescriptEslint from 'typescript-eslint'
 
 export default [
     includeIgnoreFile(path.resolve(import.meta.dirname, '.gitignore')),
@@ -19,5 +19,8 @@ export default [
                 tsconfigRootDir: import.meta.dirname,
             },
         },
+        rules: {
+            '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        },
     },
-];
+]

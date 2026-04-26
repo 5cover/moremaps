@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { DefaultPrimitiveMap } from '../src/DefaultPrimitiveMap.js'
+import { DefaultPrimitiveMap, Options } from '../src/DefaultPrimitiveMap.js'
 
 await describe(DefaultPrimitiveMap.name, async () => {
     await it('returns default for missing key and caches it', () => {
@@ -87,7 +87,7 @@ await describe(DefaultPrimitiveMap.name, async () => {
     })
 
     await it('passes itself to the default factory', () => {
-        const m: DefaultPrimitiveMap<string, number> = new DefaultPrimitiveMap((_, map) => {
+        const m = new DefaultPrimitiveMap<string, number>((_, map) => {
             assert.equal(map, m)
             return 3
         })
@@ -106,9 +106,9 @@ await describe(DefaultPrimitiveMap.name, async () => {
                     return 'set' as const
                 },
             },
-            Object.create({ default: 'set' }),
+            Object.create({ default: 'set' }) as Options,
         ] as const) {
-            const m: DefaultPrimitiveMap<string, number> = new DefaultPrimitiveMap((_, map) => {
+            const m = new DefaultPrimitiveMap((_, map): number => {
                 assert.equal(map, m)
                 return map.size
             }, options)
@@ -123,13 +123,13 @@ await describe(DefaultPrimitiveMap.name, async () => {
     })
 
     await it('calls default factory every time', () => {
-        const m: DefaultPrimitiveMap<string, number> = new DefaultPrimitiveMap(
-            (_, map) => {
+        const m = new DefaultPrimitiveMap(
+            (_, map): number => {
                 assert.equal(map, m)
                 return map.size
             },
             {
-                mode: 'get',
+                default: 'get',
             },
         )
         assert.equal(m.size, 0)
