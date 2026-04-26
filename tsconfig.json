@@ -5,6 +5,9 @@
     "lib": [
       "es6"
     ],
+    "types": [
+      "node"
+    ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noImplicitAny": true,

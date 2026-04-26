@@ -1,64 +1,65 @@
-import { DefaultMap } from './DefaultMap.js';
-import { DefaultPrimitiveMap } from './DefaultPrimitiveMap.js';
-import { PrimitiveType } from './types.js';
+import { DefaultMap } from './DefaultMap.js'
+import { DefaultPrimitiveMap, Options } from './DefaultPrimitiveMap.js'
+import { PrimitiveType } from './types.js'
 
 export class DefaultObjectMap<TKey, TValue, TPrimKey extends PrimitiveType> implements DefaultMap<TKey, TValue> {
-    readonly #ktop;
-    readonly #ptok;
-    readonly #map;
+    readonly #ktop
+    readonly #ptok
+    readonly #map
     constructor(
         defaultFactory: () => TValue,
         keyToPrim: (key: TKey) => TPrimKey,
         primToKey: (primKey: TPrimKey) => TKey,
+        options?: Options,
     ) {
-        this.#ktop = keyToPrim;
-        this.#ptok = primToKey;
-        this.#map = new DefaultPrimitiveMap<TPrimKey, TValue>(defaultFactory);
+        this.#ktop = keyToPrim
+        this.#ptok = primToKey
+        this.#map = new DefaultPrimitiveMap<TPrimKey, TValue>(defaultFactory, options)
     }
     map(key: TKey, transform: (value: TValue) => TValue) {
-        this.set(key, transform(this.get(key)));
+        this.set(key, transform(this.get(key)))
     }
     get size(): number {
-        return this.#map.size;
+        return this.#map.size
     }
     clear(): void {
-        this.#map.clear();
+        this.#map.clear()
     }
     delete(key: TKey): boolean {
-        return this.#map.delete(this.#ktop(key));
+        return this.#map.delete(this.#ktop(key))
     }
     forEach(callbackfn: (value: TValue, key: TKey, map: Map<TKey, TValue>) => void, thisArg?: unknown): void {
         this.#map.forEach((v, k) => {
-            callbackfn.call(thisArg === undefined ? this : thisArg, v, this.#ptok(k), this);
-        });
+            callbackfn.call(thisArg === undefined ? this : thisArg, v, this.#ptok(k), this)
+        })
     }
     get(key: TKey): TValue {
-        return this.#map.get(this.#ktop(key));
+        return this.#map.get(this.#ktop(key))
     }
     has(key: TKey): boolean {
-        return this.#map.has(this.#ktop(key));
+        return this.#map.has(this.#ktop(key))
     }
     set(key: TKey, value: TValue): this {
-        this.#map.set(this.#ktop(key), value);
-        return this;
+        this.#map.set(this.#ktop(key), value)
+        return this
     }
     *entries(): MapIterator<[TKey, TValue]> {
         for (const [k, v] of this.#map.entries()) {
-            yield [this.#ptok(k), v];
+            yield [this.#ptok(k), v]
         }
     }
     *keys(): MapIterator<TKey> {
         for (const k of this.#map.keys()) {
-            yield this.#ptok(k);
+            yield this.#ptok(k)
         }
     }
     values(): MapIterator<TValue> {
-        return this.#map.values();
+        return this.#map.values()
     }
     [Symbol.iterator](): MapIterator<[TKey, TValue]> {
-        return this.entries();
+        return this.entries()
     }
     get [Symbol.toStringTag](): string {
-        return this.#map[Symbol.toStringTag];
+        return this.#map[Symbol.toStringTag]
     }
 }

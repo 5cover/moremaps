@@ -9,8 +9,7 @@
     "declaration": true,
     "removeComments": false,
   },
-  "exclude": [
-    "tests/",
-    "dist/"
+  "include": [
+    "src/**/*.ts"
   ]
 }
